@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
+    <style>
+        .container {
+            margin: auto;
+            width: 50%;
+            padding:30px;
+            background: #e2e2e2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" >
+        <h1 class="text-2 font-bold" data-th-text="${name}">Welcome to home page</h1>
+        <p> Linkedin : <span data-th-text="${linkedin}"></span></p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus, fugit culpa. Vero obcaecati ipsum, nemo nesciunt aspernatur repudiandae beatae neque ea! Eum facilis explicabo quaerat aperiam vel dignissimos fugit voluptas.</p>
+    </div>
+</body>
+</html>
