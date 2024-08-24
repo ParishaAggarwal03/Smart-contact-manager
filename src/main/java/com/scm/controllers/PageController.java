@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 public class PageController {
 
@@ -11,8 +12,8 @@ public class PageController {
     public String home(Model model)
     {
         System.out.println("Home page Handler");
-        model.addAttribute("name","Substring Technologies" );
-        model.addAttribute("linkedin","Parisha" );
+        // model.addAttribute("name","Substring Technologies" );
+        // model.addAttribute("linkedin","Parisha" );
 
         return "home";
     }
@@ -32,4 +33,20 @@ public class PageController {
         System.out.println("Services page loading");
         return "services";
     }
+
+    @RequestMapping("/contact")
+    public String contact() {
+        return new String("contact");
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return new String("login");
+    }
+
+    @RequestMapping("/register")
+    public String register() {
+        return new String("register");
+    }
+    
 }
