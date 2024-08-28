@@ -1,50 +1,63 @@
 console.log("Script loaded");
-// localStorage.clear();
+
+// change theme work
 let currentTheme = getTheme();
-//  console.log(currentTheme);
-document.addEventListener("DOMContentLoaded",()=>{changeTheme();
-})
+//initial -->
 
+document.addEventListener("DOMContentLoaded", () => {
+  changeTheme();
+});
+
+//TODO:
 function changeTheme() {
-    // Set the theme to the webpage
-    document.querySelector('html').classList.add(currentTheme);
+  //set to web page
 
-    // Set the listener for the theme change button
-    const changeThemeButton = document.querySelector('#theme_change_button');
-    changeThemeButton.addEventListener("click", (event) => {
-        const oldTheme = currentTheme;
-        console.log("change theme button clicked");
+  changePageTheme(currentTheme, "");
+  //set the listener to change theme button
+  const changeThemeButton = document.querySelector("#theme_change_button");
 
-        // Remove the current theme class from the HTML element
-        document.querySelector("html").classList.remove(currentTheme);
-
-        // Toggle between "dark" and "light" themes
-        if (currentTheme === "dark") currentTheme = "light";
-        else currentTheme = "dark";
-
-        // Save the new theme in local storage
-        setTheme(currentTheme);
-
-        // Apply the new theme class to the HTML element
-        document.querySelector('html').classList.add(currentTheme);
-
-        // Change the text of the button to indicate the current theme
-        changeThemeButton.querySelector('span').textContent = currentTheme=='light'?'Dark':'Light';
-    });
-}
-
-// Set theme to local storage
-function setTheme(theme) {
-    window.localStorage.setItem("theme", theme);
-}
-
-// Get theme from local storage
-function getTheme() {
-    let theme = window.localStorage.getItem("theme");
-    if (theme === "dark" || theme === "light") {
-        return theme;
+  changeThemeButton.addEventListener("click", (event) => {
+    let oldTheme = currentTheme;
+    console.log("change theme button clicked");
+    if (currentTheme === "dark") {
+      //theme ko light
+      currentTheme = "light";
     } else {
-        return "light";
+      //theme ko dark
+      currentTheme = "dark";
     }
+    console.log(currentTheme);
+    changePageTheme(currentTheme, oldTheme);
+  });
 }
 
+//set theme to localstorage
+function setTheme(theme) {
+  localStorage.setItem("theme", theme);
+}
+
+//get theme from localstorage
+function getTheme() {
+  let theme = localStorage.getItem("theme");
+  return theme ? theme : "light";
+}
+
+//change current page theme
+function changePageTheme(theme, oldTheme) {
+  //localstorage mein update karenge
+  setTheme(currentTheme);
+  //remove the current theme
+
+  if (oldTheme) {
+    document.querySelector("html").classList.remove(oldTheme);
+  }
+  //set the current theme
+  document.querySelector("html").classList.add(theme);
+
+  // change the text of button
+  document
+    .querySelector("#theme_change_button")
+    .querySelector("span").textContent = theme == "light" ? "Dark" : "Light";
+}
+
+//change page change theme
